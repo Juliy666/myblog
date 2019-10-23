@@ -13,6 +13,9 @@ myblog:
       expire: 604800
       header: token
   file-root: D:\nginx\html
+logging:
+    level:
+      root: info
 
 spring:
   datasource:
