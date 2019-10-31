@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @param
  * @Return
@@ -15,7 +17,8 @@ import lombok.NoArgsConstructor;
 @TableName("category")
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryEntity {
+public class CategoryEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     @TableId
     private Integer cid;
     private String cname;

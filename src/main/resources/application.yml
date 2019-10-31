@@ -15,7 +15,7 @@ myblog:
   file-root: D:\nginx\html
 logging:
     level:
-      root: info
+      root: debug
 
 spring:
   datasource:

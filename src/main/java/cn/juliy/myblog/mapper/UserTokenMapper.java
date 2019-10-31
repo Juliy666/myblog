@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserTokenMapper extends BaseMapper<UserTokenEntity> {
-
+    UserTokenEntity queryByToken(String token);
 }
