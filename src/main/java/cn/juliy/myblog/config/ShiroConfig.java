@@ -47,9 +47,9 @@ public class ShiroConfig {
 
 		//授权过滤器
 		//注意：当前授权拦截后，shiro会自动跳转到未授权页面
-		filterMap.put("/publish","perms[admin:publish]");
-
-		filterMap.put("/*", "authc");
+//		filterMap.put("/publish","perms[admin:publish]");
+//
+//		filterMap.put("/*", "authc");
 
 		//修改调整的登录页面
 		shiroFilterFactoryBean.setLoginUrl("/toLogin");

@@ -18,7 +18,7 @@ public class ArticleController {
     /**
      * @Description 文章概述列表
      * @Return
-     * @param   
+     * @param
      **/
     @GetMapping("/article")
     public R getAllArticle(){

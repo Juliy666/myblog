@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <script src="langs/zh_CN.js"></script>
+    <script src='https://cdn.tiny.cloud/1/a8d92we1tujwpoglwnjyyzq49k05a70pi119dqj1ry8dygy1/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+</head>
+
+<body>
+<h1>TinyMCE Quick Start Guide</h1>
+  <form method="post">
+    <textarea id="mytextarea" name="mytextarea">Hello, 11World!</textarea>
+  </form>
+  <input type="button" onclick="getContent()" value="获得内容" />
+</body>
+
+<script>
+  tinymce.init({
+    selector: '#mytextarea',
+    plugins : 'advlist autolink link image lists preview code save',
+    toolbar: 'undo redo | styleselect | bold italic | link image | code | advlist | autolink | lists | bullist| numlist  |preview | table tabledelete | save',
+      images_upload_handler: function (blobInfo, succFun, failFun) {
+          var xhr, formData;
+          var file = blobInfo.blob();//转化为易于理解的file对象
+          xhr = new XMLHttpRequest();
+          xhr.withCredentials = false;
+          xhr.open('POST', '/publish/picture/upload');
+          xhr.onload = function() {
+              var json;
+              if (xhr.status != 200) {
+                  failFun('HTTP Error: ' + xhr.status);
+                  return;
+              }
+              json = JSON.parse(xhr.responseText);
+              console.log(json);
+              if (!json || typeof json.location != 'string') {
+                  failFun('Invalid JSON: ' + xhr.responseText);
+                  return;
+              }
+              console.log(json.location);
+              succFun(json.location);
+          };
+          formData = new FormData();
+          formData.append('file', file, file.name );//此处与源文档不一样
+          xhr.send(formData);
+          console.log(formData);
+
+      },
+  });
+
+var tinyID='mytextarea'
+function getContent(){
+    var cnt = tinyMCE.editors[tinyID].getContent();
+    console.log(cnt);
+    alert(cnt);
+}
+</script>
+
+
+</html>

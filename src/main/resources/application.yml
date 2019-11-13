@@ -12,7 +12,7 @@ myblog:
       # token有效时长，7天，单位秒
       expire: 604800
       header: token
-  file-root: D:\nginx\html
+  file-root: D:\home\demo
 logging:
     level:
       root: debug
